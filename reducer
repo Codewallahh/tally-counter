@@ -1,0 +1,41 @@
+// src/reducers/counterReducer.js
+const initialState = {
+  counters: [],
+};
+
+const counterReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'ADD_COUNTER':
+      return {
+        ...state,
+        counters: [...state.counters, { id: Date.now(), value: 0 }],
+      };
+    case 'REMOVE_COUNTER':
+      return {
+        ...state,
+        counters: state.counters.filter((counter) => counter.id !== action.id),
+      };
+    case 'INCREMENT':
+      return {
+        ...state,
+        counters: state.counters.map((counter) =>
+          counter.id === action.id
+            ? { ...counter, value: counter.value + 1 }
+            : counter
+        ),
+      };
+    case 'DECREMENT':
+      return {
+        ...state,
+        counters: state.counters.map((counter) =>
+          counter.id === action.id
+            ? { ...counter, value: counter.value - 1 }
+            : counter
+        ),
+      };
+    default:
+      return state;
+  }
+};
+
+export default counterReducer;
