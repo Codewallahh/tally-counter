@@ -1,0 +1,25 @@
+// src/components/Counter.js
+import React from 'react';
+import { useDispatch } from 'react-redux';
+
+const Counter = ({ counter }) => {
+  const dispatch = useDispatch();
+
+  const handleIncrement = () => {
+    dispatch({ type: 'INCREMENT', id: counter.id });
+  };
+
+  const handleDecrement = () => {
+    dispatch({ type: 'DECREMENT', id: counter.id });
+  };
+
+  return (
+    <div>
+      <span>{counter.value}</span>
+      <button onClick={handleIncrement}>+</button>
+      <button onClick={handleDecrement}>-</button>
+    </div>
+  );
+};
+
+export default Counter;
