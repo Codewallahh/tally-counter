@@ -1,0 +1,24 @@
+// src/components/CounterList.js
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Counter from './Counter';
+
+const CounterList = () => {
+  const counters = useSelector((state) => state.counters);
+  const dispatch = useDispatch();
+
+  const handleAddCounter = () => {
+    dispatch({ type: 'ADD_COUNTER' });
+  };
+
+  return (
+    <div>
+      {counters.map((counter) => (
+        <Counter key={counter.id} counter={counter} />
+      ))}
+      <button onClick={handleAddCounter}>Add Counter</button>
+    </div>
+  );
+};
+
+export default CounterList;
